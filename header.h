@@ -291,7 +291,15 @@ typename Vector<T>::iterator Vector<T>::crend() const {
 // Capacity
 template<class T>
 inline void Vector<T>::shrink_to_fit() {
+	T* temp = new T[_size];
 
+    for (int i = 0; i < _size; i++)
+        temp[i] = _array[i];
+
+    delete[] _array;
+    _array = temp;
+    _capacity = _size;
+}
 }
 
 template<class T>
